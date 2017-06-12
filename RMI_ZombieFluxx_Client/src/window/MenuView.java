@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -25,50 +26,59 @@ import javafx.util.Duration;
 
 public class MenuView extends Application {
 
-	private GameMenu gameMenu;
+	private GameMenu gameMenu; 
+	Pane pane;
+	InputStream is;
+	Image img;
+	private int breedte = 800 ;
+	private int hoogte = 600;
 	@Override
 	public void start(Stage arg0) throws Exception {
 
-		Pane pane = new Pane();
-		pane.setPrefSize(800,600);
+		pane = new Pane(); // Make new Pane named pane.
+		pane.setPrefSize(breedte,hoogte); // Set window size to 800 by 600
 		
-		InputStream is = Files.newInputStream(Paths.get("res/images/zombieBackground2.jpg"));
-		Image img = new Image(is);
-		is.close();
+		is = Files.newInputStream(Paths.get("res/images/zombieBackground2.jpg")); // Import background image 
+		img = new Image(is); // Make a new Image named img and set background as image 
+		is.close(); // close inputStream
 		
-		ImageView imgView = new ImageView(img);
-		imgView.setFitWidth(800);
-		imgView.setFitHeight(600);
+		ImageView imgView = new ImageView(img); // make new ImageView named imgView
+		imgView.setFitWidth(breedte); // set image width
+		imgView.setFitHeight(hoogte); // set image Height
 		
-		gameMenu = new GameMenu();
+		gameMenu = new GameMenu(); // Make new gameMenu
 		
-		pane.getChildren().addAll(imgView, gameMenu);
+		pane.getChildren().addAll(imgView, gameMenu); // set image en gamemenu to pane 
 		
-		Scene scene = new Scene(pane);
+		Scene scene = new Scene(pane); // create scene 
 		
-		arg0.setScene(scene);
+		arg0.setScene(scene); 
 		arg0.show();
 		
 		
 	}
 	
-	private static class MenuButton extends StackPane{
+	private static class MenuButton extends StackPane{ 
 		private Text text;
 		
 		public MenuButton(String name){
+			// Text formate 
 			text = new Text(name);
 			//text = setFont(text.getFont().font(20));
 			text.setFill(Color.WHITE);
 			
+			// menu button background.
 			Rectangle bg = new Rectangle(250, 30);
 			bg.setOpacity(0.5);
 			bg.setFill(Color.BLACK);
 			bg.setEffect(new GaussianBlur(3.5));
 			
+			// 
 			setAlignment(Pos.CENTER_LEFT);
 			setRotate(0.5);
 			getChildren().addAll(bg, text);
 			
+			// What happens when you go over the buttons with your mouse 
 			setOnMouseEntered(event -> {
 				bg.setTranslateX(0);
 				text.setTranslateX(0);
@@ -76,6 +86,7 @@ public class MenuView extends Application {
 				text.setFill(Color.WHITE);
 			});
 			
+			// What happens when your mouse leaves the button 
 			setOnMouseExited(event -> {
 				bg.setTranslateX(0);
 				text.setTranslateX(0);
@@ -83,6 +94,7 @@ public class MenuView extends Application {
 				text.setFill(Color.WHITE);
 			});
 			
+			// What happens when you click on a button with your mouse 
 			DropShadow drop = new DropShadow(50, Color.RED);
 			drop.setInput(new Glow());
 			
@@ -109,17 +121,29 @@ public class MenuView extends Application {
 			
 			menu1.setTranslateX(offset);
 			
-			MenuButton buttonStart = new MenuButton("  Start Game");
+			// All the different buttons and what they do onmouseclick 
+			MenuButton buttonStart = new MenuButton("  New Game");
 			buttonStart.setOnMouseClicked(event -> {
-				FadeTransition ft = new FadeTransition(Duration.seconds(1), this);
-				ft.setFromValue(1);
-				ft.setToValue(0);
-				ft.setOnFinished(evt -> this.setVisible(false));
-				ft.play();
+				//FadeTransition ft = new FadeTransition(Duration.seconds(1), menu0);
+				//ft.setFromValue(1);
+				//ft.setToValue(0);
+				//ft.setOnFinished(evt -> this.setVisible(false));
+				//ft.play();
+				//getChildren().add(menu1);
+				//TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), menu0);
+				//tt.setToX(menu1.getTranslateX() - offset);
+				
+				//TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0), menu1);
+				//tt1.setToX(menu0.getTranslateX());
+				
+				//tt.play();
+				//tt1.play();
+				
+				//tt.setOnFinished(evt ->{ getChildren().remove(menu0);});
 				
 			});
 			
-			MenuButton buttonResume = new MenuButton("  Resume Game");
+			MenuButton buttonResume = new MenuButton("  Load Game");
 			buttonResume.setOnMouseClicked(event -> {
 				
 				
@@ -139,17 +163,54 @@ public class MenuView extends Application {
 			
 			MenuButton buttonOption = new MenuButton("  Options");
 			buttonOption.setOnMouseClicked(event -> {
+				//getChildren().add(menu1);
+				//Button animation
+				//TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menu0);
+				//tt.setToX(menu0.getTranslateX() - offset);
 				
+				TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.25), menu1);
+				//tt1.setToX(menu0.getTranslateX());
 				
+				//tt.play();
+				tt1.play();
+				
+				tt1.setOnFinished(evt ->{ getChildren().remove(menu1);});
+				//tt1.setOnFinished(evt -> menu1.setVisible(false));
 			});
 			
 			MenuButton buttonQuit = new MenuButton("  Quit");
 			buttonQuit.setOnMouseClicked(event -> {
-				System.exit(0);
+				System.exit(0); // close the programme.
 				
 			});
 			
+			MenuButton buttonNewgame = new MenuButton("  New Game");
+			buttonNewgame.setOnMouseClicked(event -> {
+				FadeTransition ft = new FadeTransition(Duration.seconds(1), this);
+				ft.setFromValue(1);
+				ft.setToValue(0);
+				ft.setOnFinished(evt -> this.setVisible(false));
+				ft.play();
+				
+			});
+			
+			MenuButton buttonLoad = new MenuButton("  Load Game");
+			buttonLoad.setOnMouseClicked(event -> {
+				FadeTransition ft = new FadeTransition(Duration.seconds(1), this);
+				ft.setFromValue(1);
+				ft.setToValue(0);
+				ft.setOnFinished(evt -> this.setVisible(false));
+				ft.play();
+				
+			});
+			
+			// set all buttons to menu0
 			menu0.getChildren().addAll(buttonStart, buttonResume, buttonJoin, buttonRules, buttonOption, buttonQuit);
+			
+			// set buttons for menu1
+			//menu1.getChildren().addAll(buttonNewgame, buttonLoad);
+						
+			// Make a gray rectangle in the background with a opacity 0.4
 			Rectangle bg = new Rectangle(800, 600);
 			bg.setFill(Color.GRAY);
 			bg.setOpacity(0.4);
