@@ -20,6 +20,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -64,7 +65,8 @@ public class MenuView extends Application {
 		public MenuButton(String name){
 			// Text formate 
 			text = new Text(name);
-			//text = setFont(text.getFont().font(20));
+			text.getFont();
+			text.setFont(Font.font(20));
 			text.setFill(Color.WHITE);
 			
 			// menu button background.

@@ -43,14 +43,7 @@ public class BoardView extends Application {
 		imgView.setFitWidth(breedte); // set image width
 		imgView.setFitHeight(hoogte); // set image Height
 		
-		Card c = new Card("Brains");
-		StackPane sp = new StackPane();
-		
-		sp.getChildren().addAll(c);
-		
-		
-	
-		pane.getChildren().addAll(imgView, sp); // set image en gamemenu to pane 
+		pane.getChildren().addAll(imgView); // set image en gamemenu to pane 
 		
 		Scene scene = new Scene(pane); // create scene 
 		

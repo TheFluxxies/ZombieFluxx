@@ -3,9 +3,6 @@ package test_zf_1;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
-import javax.swing.GroupLayout.Alignment;
-
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
