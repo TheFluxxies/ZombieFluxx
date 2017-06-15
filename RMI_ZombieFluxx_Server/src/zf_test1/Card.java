@@ -1,10 +1,11 @@
 package zf_test1;
 
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,6 +14,11 @@ import javafx.scene.layout.HBox;
 
 public class Card implements Card_Interface{
 	
+	int ID;
+	
+	 ArrayList<String> cards = new ArrayList<String>();
+	 
+	 //cards.add("");
 	
 	public Card(int id){
 		int breedte = 40;
@@ -24,7 +30,7 @@ public class Card implements Card_Interface{
 		
 		
 		try {
-			is = Files.newInputStream(Paths.get("res/images/"+(id.toString())+".png"));
+			is = Files.newInputStream(Paths.get("res/images/"+toString(id)+".png"));
 			img = new Image(is); // Make a new Image named img and set background as image 
 			is.close(); // close inputStream
 			
@@ -40,11 +46,12 @@ public class Card implements Card_Interface{
 		} // Import background image 
 	}
 
-	@Override
-	public void sayHello() throws RemoteException {
+
+	private String toString(int id2) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
+
 
 	@Override
 	public void getCard() {

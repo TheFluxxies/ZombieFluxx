@@ -72,7 +72,7 @@ public static void main(String[] args) {
 			// Text formate 
 			text = new Text(name);
 			text.getFont();
-			text.setFont(Font.font(10));
+			text.setFont(Font.font(30));
 			text.setFill(Color.WHITE);
 			text.setTextAlignment(TextAlignment.CENTER);
 			
@@ -83,7 +83,7 @@ public static void main(String[] args) {
 			bg.setEffect(new GaussianBlur(3.5));
 			
 			// 
-			setAlignment(Pos.CENTER_LEFT);
+			setAlignment(Pos.CENTER);
 			setRotate(0.5);
 			getChildren().addAll(bg, text);
 			
@@ -152,13 +152,13 @@ public static void main(String[] args) {
 				
 			});
 			
-			lobbyPlayer buttonContinue = new lobbyPlayer(" Continue");
+			lobbyPlayer buttonContinue = new lobbyPlayer("Continue");
 			buttonContinue.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
 				
 			});
 			
-			lobbyPlayer buttonCancel = new lobbyPlayer(" Cancel");
+			lobbyPlayer buttonCancel = new lobbyPlayer("Cancel");
 			buttonCancel.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
 				

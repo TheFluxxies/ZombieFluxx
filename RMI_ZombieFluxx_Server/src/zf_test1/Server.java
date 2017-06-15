@@ -11,10 +11,28 @@ public class Server {
 			Deck deck = new Deck();
 			Discard discard = new Discard();
 			Game game = new Game();
+			Card card = new Card(0);
+			Player player = new Player();
+			PlayerHand ph = new PlayerHand();
 			
 			ZF_Interface InterfaceSkeleton = (ZF_Interface) UnicastRemoteObject.exportObject(zf_impl, 0);
+			Card_Interface card_inf = (Card_Interface) UnicastRemoteObject.exportObject(card, 0);
+			Deck_Interface deck_inf = (Deck_Interface) UnicastRemoteObject.exportObject(deck, 0);
+			Discard_Interface discard_inf = (Discard_Interface) UnicastRemoteObject.exportObject(discard, 0);
+			Game_Interface game_inf = (Game_Interface) UnicastRemoteObject.exportObject(game, 0);
+			Player_Interface player_inf = (Player_Interface) UnicastRemoteObject.exportObject(player, 0);
+			PlayerHand_Interface playerhand_inf = (PlayerHand_Interface) UnicastRemoteObject.exportObject(ph, 0);
+			
+		
 			Registry registry = LocateRegistry.createRegistry(1099);
 			registry.rebind("ZF_Interface", InterfaceSkeleton);
+			registry.rebind("Card_Interface", card_inf);
+			registry.rebind("Deck_Interface", deck_inf);
+			registry.rebind("Discard_Interface", discard_inf);
+			registry.rebind("Game_Interface", game_inf);
+			registry.rebind("Player_Interface", player_inf);
+			registry.rebind("PlayerHand_Interface", playerhand_inf);
+			
 			System.out.println("Server running...");
 			
 			

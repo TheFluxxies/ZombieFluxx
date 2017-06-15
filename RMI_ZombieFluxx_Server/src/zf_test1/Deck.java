@@ -14,7 +14,7 @@ public class Deck implements Deck_Interface{
 	Deck() {
 		topCard = 0;
 		for (int i=0;i<deck.length;i++){
-			deck[i] = new Card(naam);
+			deck[i] = new Card(i);
 		}
 	}
 	
@@ -32,7 +32,7 @@ public class Deck implements Deck_Interface{
 		}
 		else{
 			theCard = null;
-			return theCard;
 		}
+		return theCard;
 	}
 }
