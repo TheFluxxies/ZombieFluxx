@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.rmi.RemoteException;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,17 +13,18 @@ import javafx.scene.layout.HBox;
 
 public class Card implements Card_Interface{
 	
-	String naam;
 	
-	public Card(String naam){
+	public Card(int id){
 		int breedte = 40;
 		int hoogte = 100;
 		InputStream is;
 		Image img;
-		this.naam = naam;
+		this.ID = id;
+		
+		
 		
 		try {
-			is = Files.newInputStream(Paths.get("res/images/"+naam+".png"));
+			is = Files.newInputStream(Paths.get("res/images/"+(id.toString())+".png"));
 			img = new Image(is); // Make a new Image named img and set background as image 
 			is.close(); // close inputStream
 			
@@ -37,7 +39,13 @@ public class Card implements Card_Interface{
 			e.printStackTrace();
 		} // Import background image 
 	}
-	
+
+	@Override
+	public void sayHello() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	@Override
 	public void getCard() {
 		// TODO Auto-generated method stub
@@ -49,4 +57,8 @@ public class Card implements Card_Interface{
 		// TODO Auto-generated method stub
 		
 	}
+
+	
+	
+	
 }

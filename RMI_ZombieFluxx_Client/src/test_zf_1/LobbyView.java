@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import javax.swing.GroupLayout.Alignment;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -20,7 +21,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 
@@ -68,8 +71,10 @@ public static void main(String[] args) {
 		public lobbyPlayer(String name){
 			// Text formate 
 			text = new Text(name);
-			//text = setFont(text.getFont().font(20));
+			text.getFont();
+			text.setFont(Font.font(10));
 			text.setFill(Color.WHITE);
+			text.setTextAlignment(TextAlignment.CENTER);
 			
 			// menu button background.
 			Rectangle bg = new Rectangle(250, 40);
@@ -147,13 +152,13 @@ public static void main(String[] args) {
 				
 			});
 			
-			lobbyPlayer buttonContinue = new lobbyPlayer("Continue");
+			lobbyPlayer buttonContinue = new lobbyPlayer(" Continue");
 			buttonContinue.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
 				
 			});
 			
-			lobbyPlayer buttonCancel = new lobbyPlayer("Cancel");
+			lobbyPlayer buttonCancel = new lobbyPlayer(" Cancel");
 			buttonCancel.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
 				

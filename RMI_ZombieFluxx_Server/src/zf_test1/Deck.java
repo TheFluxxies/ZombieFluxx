@@ -9,11 +9,12 @@ public class Deck implements Deck_Interface{
 	private Card[] deck = new Card[100];
 	
 	private int topCard; 
+	String naam;
 	
 	Deck() {
 		topCard = 0;
 		for (int i=0;i<deck.length;i++){
-			deck[i] = new Card(i);
+			deck[i] = new Card(naam);
 		}
 	}
 	

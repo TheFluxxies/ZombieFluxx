@@ -6,11 +6,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import zf_test1.Card;
 
@@ -42,9 +44,13 @@ public class BoardView extends Application {
 		imgView.setFitHeight(hoogte); // set image Height
 		
 		Card c = new Card("Brains");
-
+		StackPane sp = new StackPane();
 		
-		pane.getChildren().addAll(imgView); // set image en gamemenu to pane 
+		sp.getChildren().addAll(c);
+		
+		
+	
+		pane.getChildren().addAll(imgView, sp); // set image en gamemenu to pane 
 		
 		Scene scene = new Scene(pane); // create scene 
 		
