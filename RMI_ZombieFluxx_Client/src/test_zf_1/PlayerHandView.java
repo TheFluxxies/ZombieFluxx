@@ -1,6 +1,5 @@
 package test_zf_1;
 
-
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -12,8 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-
-public class BoardView extends Application {
+public class PlayerHandView extends Application {
 
 	public static void main(String[] args) {
 		
@@ -23,15 +21,15 @@ public class BoardView extends Application {
 	Pane pane;
 	InputStream is;
 	Image img;
-	private int breedte = 1200 ;
+	private int breedte = 125;
 	private int hoogte = 1000;
 	@Override
 	public void start(Stage arg0) throws Exception {
 		
 		pane = new Pane(); // Make new Pane named pane.
-		pane.setPrefSize(breedte,hoogte); // Set window size to 800 by 600
+		pane.setPrefSize(breedte,hoogte); // Set window size to 1000 by 125
 		
-		is = Files.newInputStream(Paths.get("res/images/Achtergrond.jpg")); // Import background image 
+		is = Files.newInputStream(Paths.get("res/images/BordZijkant.jpg")); // Import background image 
 		img = new Image(is); // Make a new Image named img and set background as image 
 		is.close(); // close inputStream
 		
@@ -49,5 +47,4 @@ public class BoardView extends Application {
 		arg0.setScene(scene); // setScene
 		arg0.show(); 
 	}
-
 }
