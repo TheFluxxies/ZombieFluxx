@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 
 	public interface ZF_Interface extends Remote {
 		void sayHello() throws RemoteException;
+		void 
 		
 	}
 

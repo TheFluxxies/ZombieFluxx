@@ -25,6 +25,11 @@ public class GameClient extends Application {
 		Registry registry = LocateRegistry.getRegistry("127.0.0.1");
 		interfacestub = (ZF_Interface) registry.lookup("ZF_Interface");
 		interfacestub.sayHello();
+		
+		
+		//MenuView mv = new MenuView();
+		
+		
 		Button startbutton = new Button("Start");
 		TextField infield = new TextField();
 		VBox vbox = new VBox(10);

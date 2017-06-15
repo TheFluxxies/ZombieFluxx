@@ -1,4 +1,4 @@
-package window;
+package test_zf_1;
 
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -124,22 +124,22 @@ public class MenuView extends Application {
 			// All the different buttons and what they do onmouseclick 
 			MenuButton buttonStart = new MenuButton("  New Game");
 			buttonStart.setOnMouseClicked(event -> {
-				//FadeTransition ft = new FadeTransition(Duration.seconds(1), menu0);
-				//ft.setFromValue(1);
-				//ft.setToValue(0);
+				FadeTransition ft = new FadeTransition(Duration.seconds(1), menu0);
+				ft.setFromValue(1);
+				ft.setToValue(0);
 				//ft.setOnFinished(evt -> this.setVisible(false));
-				//ft.play();
-				//getChildren().add(menu1);
-				//TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), menu0);
-				//tt.setToX(menu1.getTranslateX() - offset);
+				ft.play();
+				getChildren().add(menu1);
+				TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), menu0);
+				tt.setToX(menu1.getTranslateX() - offset);
 				
-				//TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0), menu1);
-				//tt1.setToX(menu0.getTranslateX());
+				TranslateTransition tt1 = new TranslateTransition(Duration.seconds(1), menu1);
+				tt1.setToX(menu0.getTranslateX());
 				
-				//tt.play();
-				//tt1.play();
+				tt.play();
+				tt1.play();
 				
-				//tt.setOnFinished(evt ->{ getChildren().remove(menu0);});
+				tt.setOnFinished(evt ->{ getChildren().remove(menu0);});
 				
 			});
 			
@@ -163,19 +163,19 @@ public class MenuView extends Application {
 			
 			MenuButton buttonOption = new MenuButton("  Options");
 			buttonOption.setOnMouseClicked(event -> {
-				//getChildren().add(menu1);
+				getChildren().add(menu1);
 				//Button animation
-				//TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menu0);
-				//tt.setToX(menu0.getTranslateX() - offset);
+				TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menu0);
+				tt.setToX(menu0.getTranslateX() - offset);
 				
 				TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.25), menu1);
-				//tt1.setToX(menu0.getTranslateX());
+				tt1.setToX(menu0.getTranslateX());
 				
-				//tt.play();
+				tt.play();
 				tt1.play();
 				
 				tt1.setOnFinished(evt ->{ getChildren().remove(menu1);});
-				//tt1.setOnFinished(evt -> menu1.setVisible(false));
+				tt1.setOnFinished(evt -> menu1.setVisible(false));
 			});
 			
 			MenuButton buttonQuit = new MenuButton("  Quit");
@@ -208,7 +208,7 @@ public class MenuView extends Application {
 			menu0.getChildren().addAll(buttonStart, buttonResume, buttonJoin, buttonRules, buttonOption, buttonQuit);
 			
 			// set buttons for menu1
-			//menu1.getChildren().addAll(buttonNewgame, buttonLoad);
+			menu1.getChildren().addAll(buttonNewgame, buttonLoad);
 						
 			// Make a gray rectangle in the background with a opacity 0.4
 			Rectangle bg = new Rectangle(800, 600);
