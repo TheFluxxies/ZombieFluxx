@@ -1,5 +1,9 @@
 package zf_test1;
 
-public class Card_Interface {
+import java.rmi.Remote;
 
+public interface Card_Interface extends Remote {
+	
+	void getCard();
+	void setCard();
 }

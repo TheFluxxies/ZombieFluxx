@@ -1,5 +1,7 @@
 package zf_test1;
 
-public class Discard_Interface {
+import java.rmi.Remote;
+
+public interface Discard_Interface extends Remote{
 
 }

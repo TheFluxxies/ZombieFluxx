@@ -1,5 +1,5 @@
 package zf_test1;
 
-public class Discard {
+public class Discard implements Discard_Interface{
 
 }

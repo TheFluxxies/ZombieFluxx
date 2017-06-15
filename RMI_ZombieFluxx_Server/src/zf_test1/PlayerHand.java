@@ -1,5 +1,5 @@
 package zf_test1;
 
-public class PlayerHand {
+public class PlayerHand implements PlayerHand_Interface{
 
 }
