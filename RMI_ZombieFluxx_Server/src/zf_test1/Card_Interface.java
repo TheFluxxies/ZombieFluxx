@@ -5,6 +5,5 @@ import java.rmi.RemoteException;
 
 public interface Card_Interface extends Remote {
 	
-	void getCard() throws RemoteException;
 	void setCard() throws RemoteException;
 }

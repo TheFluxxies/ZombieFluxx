@@ -11,7 +11,7 @@ public class Server {
 			Deck deck = new Deck();
 			Discard discard = new Discard();
 			Game game = new Game();
-			Card card = new Card(0);
+			Card card = new Card("Brains");
 			Player player = new Player();
 			PlayerHand ph = new PlayerHand();
 			
