@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javafx.scene.image.Image;
@@ -48,6 +49,14 @@ public class Card implements Card_Interface{
 	public void setCard() {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+	@Override
+	public void SayConnected() throws RemoteException {
+		// TODO Auto-generated method stub
+		System.out.println("Card is Connected to Client");
 	}
 
 	

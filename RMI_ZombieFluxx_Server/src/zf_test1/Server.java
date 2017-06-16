@@ -25,6 +25,7 @@ public class Server {
 			
 		
 			Registry registry = LocateRegistry.createRegistry(1099);
+			System.out.println("Getting getting files from registry");
 			registry.rebind("ZF_Interface", InterfaceSkeleton);
 			registry.rebind("Card_Interface", card_inf);
 			registry.rebind("Deck_Interface", deck_inf);
