@@ -1,5 +1,6 @@
 package zf_test1;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -133,6 +134,12 @@ public class Deck implements Deck_Interface{
 		
 		return null;
 		
+	}
+
+	@Override
+	public void SayConnected() throws RemoteException {
+		// TODO Auto-generated method stub
+		System.out.println("Deck Pile is Connected to Client");
 	}
 	
 	
