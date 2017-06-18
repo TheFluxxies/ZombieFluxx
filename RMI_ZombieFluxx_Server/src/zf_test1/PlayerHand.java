@@ -6,10 +6,32 @@ import java.util.ArrayList;
 public class PlayerHand implements PlayerHand_Interface{
 		
 	ArrayList<String> hand = new ArrayList<String>();
-
+	
+	public PlayerHand(){
+		
+	}
+	
 	@Override
 	public void SayConnected() throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("Playerhand is Connected to Client");
+	}
+
+	@Override
+	public void getCards() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addCard() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void RemoveCard() throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 }

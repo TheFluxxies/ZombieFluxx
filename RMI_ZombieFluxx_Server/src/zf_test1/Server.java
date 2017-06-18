@@ -18,7 +18,7 @@ public class Server {
 			ZF_Interface InterfaceSkeleton = (ZF_Interface) UnicastRemoteObject.exportObject(zf_impl, 0);
 			Card_Interface card_inf = (Card_Interface) UnicastRemoteObject.exportObject(card, 0);
 			Deck_Interface deck_inf = (Deck_Interface) UnicastRemoteObject.exportObject(deck, 0);
-			Discard_Interface discard_inf = (Discard_Interface) UnicastRemoteObject.exportObject(discard, 0);
+			Deck_Interface discard_inf = (Deck_Interface) UnicastRemoteObject.exportObject(discard, 0);
 			Game_Interface game_inf = (Game_Interface) UnicastRemoteObject.exportObject(game, 0);
 			Player_Interface player_inf = (Player_Interface) UnicastRemoteObject.exportObject(player, 0);
 			PlayerHand_Interface playerhand_inf = (PlayerHand_Interface) UnicastRemoteObject.exportObject(ph, 0);

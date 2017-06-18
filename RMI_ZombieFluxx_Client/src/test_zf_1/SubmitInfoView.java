@@ -1,36 +1,41 @@
 package test_zf_1;
 
 
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.rmi.RemoteException;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.TranslateTransition;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-//import nl.hsleiden.rmi.counter.client.CounterController;
 
-public class MenuView extends Application {
+
+
+public class SubmitInfoView extends Application{
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		launch(args);
+	}
 
 	private GameMenu gameMenu; 
 	Pane pane;
@@ -120,127 +125,43 @@ public class MenuView extends Application {
 	
 	private class GameMenu extends Parent {
 		public GameMenu() {
-			VBox menu0 = new VBox(10);
-			VBox menu1 = new VBox(10);
+			HBox h = new HBox();
+			HBox v = new HBox();
+			Label l = new Label("Name: ");
+			TextField t = new TextField();
 			
-			menu0.setTranslateX(100);
-			menu0.setTranslateY(200);
-			
-			menu1.setTranslateX(100);
-			menu1.setTranslateY(200);
-			
-			final int offset = 400;
-			
-			menu1.setTranslateX(offset);
 			
 			// All the different buttons and what they do onmouseclick 
-			MenuButton buttonStart = new MenuButton("  New Game");
-			buttonStart.setOnMouseClicked(event -> {
-				FadeTransition ft = new FadeTransition(Duration.seconds(1), menu0);
-				ft.setFromValue(1);
-				ft.setToValue(0);
-				//ft.setOnFinished(evt -> this.setVisible(false));
-				ft.play();
-				getChildren().add(menu1);
-				TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), menu0);
-				tt.setToX(menu1.getTranslateX() - offset);
-				
-				TranslateTransition tt1 = new TranslateTransition(Duration.seconds(1), menu1);
-				tt1.setToX(menu0.getTranslateX());
-				
-				tt.play();
-				tt1.play();
-				
-				tt.setOnFinished(evt ->{ getChildren().remove(menu0);});
+			MenuButton Continue = new MenuButton("Continue");
+			Continue.setOnMouseClicked(event -> {
 				
 			});
 			
-			MenuButton buttonResume = new MenuButton("  Load Game");
-			buttonResume.setOnMouseClicked(event -> {
+			MenuButton Cancel = new MenuButton("Cancel");
+			Cancel.setOnMouseClicked(event -> {
 				
-				
-			});
-			
-			MenuButton buttonJoin = new MenuButton("  Join Game");
-			buttonJoin.setOnMouseClicked(event -> {
-				
-				
-			});
-			
-			MenuButton buttonRules = new MenuButton("  Rules");
-			buttonRules.setOnMouseClicked(event -> {
-				
-				
-			});
-			
-			MenuButton buttonOption = new MenuButton("  Options");
-			buttonOption.setOnMouseClicked(event -> {
-				getChildren().add(menu1);
-				//Button animation
-				TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menu0);
-				tt.setToX(menu0.getTranslateX() - offset);
-				
-				TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.25), menu1);
-				tt1.setToX(menu0.getTranslateX());
-				
-				tt.play();
-				tt1.play();
-				
-				tt1.setOnFinished(evt ->{ getChildren().remove(menu1);});
-				tt1.setOnFinished(evt -> menu1.setVisible(false));
-			});
-			
-			MenuButton buttonQuit = new MenuButton("  Quit");
-			buttonQuit.setOnMouseClicked(event -> {
-				System.exit(0); // close the programme.
-				
-			});
-			
-			MenuButton buttonNewgame = new MenuButton("  New Game");
-			buttonNewgame.setOnMouseClicked(event -> {
-				FadeTransition ft = new FadeTransition(Duration.seconds(1), this);
-				ft.setFromValue(1);
-				ft.setToValue(0);
-				ft.setOnFinished(evt -> this.setVisible(false));
-				ft.play();
-				Application.launch(MenuView.class);
-				System.exit(0); // close the programme.
-				
-			});
-			
-			MenuButton buttonLoad = new MenuButton("  Load Game");
-			buttonLoad.setOnMouseClicked(event -> {
-				//FadeTransition ft = new FadeTransition(Duration.seconds(1), this);
-				//ft.setFromValue(1);
-				//ft.setToValue(0);
-				//ft.setOnFinished(evt -> this.setVisible(false));
-				//ft.play();
-				
-				
-				GameClient.launch(BoardView.class);
 				
 			});
 			
 			// set all buttons to menu0
-			menu0.getChildren().addAll(buttonStart, buttonResume, buttonJoin, buttonRules, buttonOption, buttonQuit);
+			h.getChildren().addAll(Continue, Cancel);
+			v.getChildren().addAll(l,t);
+			v.setSpacing(10);
 			
-			// set buttons for menu1
-			menu1.getChildren().addAll(buttonNewgame, buttonLoad);
-						
+			v.setTranslateX(250);
+			v.setTranslateY(300);
+			
+			h.setTranslateX(100);
+			h.setTranslateY(500);
 			// Make a gray rectangle in the background with a opacity 0.4
 			Rectangle bg = new Rectangle(800, 600);
 			bg.setFill(Color.GRAY);
 			bg.setOpacity(0.4);
 			
-			getChildren().addAll(bg,menu0);
+			getChildren().addAll(bg,h,v);
 			
 			
 		}
 	}
-	
-	
-	
 
-	
-	
 }

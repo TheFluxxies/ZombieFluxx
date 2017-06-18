@@ -7,4 +7,5 @@ public interface Card_Interface extends Remote {
 	
 	void setCard() throws RemoteException;
 	void SayConnected() throws RemoteException;
+	
 }

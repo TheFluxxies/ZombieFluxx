@@ -11,7 +11,7 @@ public class Deck implements Deck_Interface{
 	//private Card[] deck = new Card[100];
 	ArrayList<String> cards = new ArrayList<String>();
 	
-	private int topCard; 
+	//private int topCard; 
 	String naam;
 	
 	Deck() {
@@ -140,6 +140,24 @@ public class Deck implements Deck_Interface{
 	public void SayConnected() throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("Deck Pile is Connected to Client");
+	}
+
+	@Override
+	public void addCard() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeCard() throws RemoteException {
+		// 
+		//cards.remove();
+	}
+		
+	@Override
+	public void getCard() throws RemoteException {
+		// 
+		System.out.println(cards.size());
 	}
 	
 	

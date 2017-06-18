@@ -5,5 +5,8 @@ import java.rmi.RemoteException;
 
 public interface Player_Interface extends Remote {
 	void SayConnected() throws RemoteException;
+	void getNaam() throws RemoteException;
+	void getPlayerHand() throws RemoteException;
+	void getPlayerPlays() throws RemoteException;
 	
 }
