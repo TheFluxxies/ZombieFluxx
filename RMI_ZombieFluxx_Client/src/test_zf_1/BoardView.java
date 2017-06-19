@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 public class BoardView extends Application {
 
+	
 	public static void main(String[] args) {
 		
 		launch();
