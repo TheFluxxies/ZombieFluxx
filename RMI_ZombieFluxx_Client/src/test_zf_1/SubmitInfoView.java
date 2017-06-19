@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.rmi.RemoteException;
-
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -27,11 +27,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import zf_test1.Player;
 
 
 
 public class SubmitInfoView extends Application{
-
+	ArrayList<Player> allplayers = new ArrayList<Player>();
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
@@ -134,6 +135,14 @@ public class SubmitInfoView extends Application{
 			// All the different buttons and what they do onmouseclick 
 			MenuButton Continue = new MenuButton("Continue");
 			Continue.setOnMouseClicked(event -> {
+				if (t.getText().equals("")){
+					Continue.setVisible(false);
+				} else{
+				    Continue.setVisible(true);
+				    Player x = new Player(t.getText());
+				    allplayers.add(x);
+				    System.out.println(x);
+				}
 				
 			});
 			
@@ -142,7 +151,9 @@ public class SubmitInfoView extends Application{
 				
 				
 			});
-			
+			while(t.getText() != null){
+				 Continue.setVisible(true);
+			}
 			// set all buttons to menu0
 			h.getChildren().addAll(Continue, Cancel);
 			v.getChildren().addAll(l,t);

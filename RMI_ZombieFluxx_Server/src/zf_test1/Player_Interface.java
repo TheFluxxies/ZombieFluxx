@@ -8,5 +8,6 @@ public interface Player_Interface extends Remote {
 	void getNaam() throws RemoteException;
 	void getPlayerHand() throws RemoteException;
 	void getPlayerPlays() throws RemoteException;
+	void setName(String naam) throws RemoteException;
 	
 }

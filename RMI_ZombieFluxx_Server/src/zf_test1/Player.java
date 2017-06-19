@@ -3,9 +3,9 @@ package zf_test1;
 import java.rmi.RemoteException;
 
 public class Player implements Player_Interface{
-	
-	public Player(){
-		
+	String naam;
+	public Player(String naam){
+		this.naam = naam;
 	}
 	
 	@Override
@@ -28,6 +28,16 @@ public class Player implements Player_Interface{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void setName(String naam) throws RemoteException {
+		// TODO Auto-generated method stub
+		this.naam = naam;
+	}
+
+	
+
+	
 	
 	
 
