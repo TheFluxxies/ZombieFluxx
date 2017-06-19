@@ -217,7 +217,7 @@ public class MenuView extends Application {
 				//ft.play();
 				
 				
-				GameClient.launch(BoardView.class);
+				
 				
 			});
 			

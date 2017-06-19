@@ -123,26 +123,20 @@ public class SubmitInfoView extends Application{
 		}
 
 	}
-	
+	HBox h = new HBox();
+	HBox v = new HBox();
+	Label l = new Label("Name: ");
+	TextField t = new TextField();
 	private class GameMenu extends Parent {
 		public GameMenu() {
-			HBox h = new HBox();
-			HBox v = new HBox();
-			Label l = new Label("Name: ");
-			TextField t = new TextField();
 			
 			
 			// All the different buttons and what they do onmouseclick 
 			MenuButton Continue = new MenuButton("Continue");
 			Continue.setOnMouseClicked(event -> {
-				if (t.getText().equals("")){
-					Continue.setVisible(false);
-				} else{
-				    Continue.setVisible(true);
-				    Player x = new Player(t.getText());
-				    allplayers.add(x);
-				    System.out.println(x);
-				}
+				Player x = new Player(t.getText());
+			    allplayers.add(x);
+			    System.out.println(x);
 				
 			});
 			
@@ -151,9 +145,8 @@ public class SubmitInfoView extends Application{
 				
 				
 			});
-			while(t.getText() != null){
-				 Continue.setVisible(true);
-			}
+			
+			
 			// set all buttons to menu0
 			h.getChildren().addAll(Continue, Cancel);
 			v.getChildren().addAll(l,t);
@@ -171,8 +164,15 @@ public class SubmitInfoView extends Application{
 			
 			getChildren().addAll(bg,h,v);
 			
+			Continue.setVisible(false);
+			
+			while(t.getText() != null){
+				Continue.setVisible(true);
+				    
+				}
+			}
 			
 		}
 	}
 
-}
+
