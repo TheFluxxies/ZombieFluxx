@@ -14,9 +14,10 @@ public class Player implements Player_Interface{
 		System.out.println("Player is Connected to Client");
 	}
 	@Override
-	public void getNaam() throws RemoteException {
+	public String getNaam() throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		System.out.println(this.naam);
+		return this.naam;
 	}
 	@Override
 	public void getPlayerHand() throws RemoteException {

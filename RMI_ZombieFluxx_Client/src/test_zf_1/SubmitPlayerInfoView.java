@@ -1,6 +1,5 @@
 package test_zf_1;
 
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -29,10 +28,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import zf_test1.Player;
 
+public class SubmitPlayerInfoView extends Application{
 
-
-public class SubmitInfoView extends Application{
-	static ArrayList<Player> allplayers = new ArrayList<Player>();
+static ArrayList<Player> allplayers = new ArrayList<Player>();
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -45,9 +43,9 @@ public class SubmitInfoView extends Application{
 	Image img;
 	private int breedte = 800 ;
 	private int hoogte = 600;
-	Stage arg0 = new Stage();
-	public void start(Stage arg0) throws RemoteException {
-		this.arg0 = arg0;
+	Stage arg1 = new Stage();
+	public void start(Stage arg1) throws RemoteException {
+		this.arg1 = arg1;
 		pane = new Pane(); // Make new Pane named pane.
 		pane.setPrefSize(breedte,hoogte); // Set window size to 800 by 600
 		
@@ -70,8 +68,8 @@ public class SubmitInfoView extends Application{
 		
 		Scene scene = new Scene(pane); // create scene 
 		
-		arg0.setScene(scene); 
-		arg0.show();
+		arg1.setScene(scene); 
+		arg1.show();
 		
 		
 	}
@@ -126,8 +124,11 @@ public class SubmitInfoView extends Application{
 	}
 	HBox h = new HBox();
 	HBox v = new HBox();
-	Label l = new Label("Name: ");
+	HBox v2 = new HBox();
+	Label l = new Label  ("Name:      ");
+	Label l1 = new Label ("Server Ip: ");
 	TextField t = new TextField();
+	TextField t2 = new TextField();
 	MenuButton Continue = new MenuButton("Continue");
 	MenuButton Cancel = new MenuButton("Cancel");
 	private class GameMenu extends Parent {
@@ -165,9 +166,10 @@ public class SubmitInfoView extends Application{
 			
 			Cancel.setOnMouseClicked(event -> {
 				
+				
 				try {
 					s.start(s.arg0);
-					arg0.close();
+					arg1.close();
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -185,11 +187,17 @@ public class SubmitInfoView extends Application{
 			// set all buttons to menu0
 			h.getChildren().addAll(Continue, Cancel);
 			v.getChildren().addAll(l,t);
+			v2.getChildren().addAll(l1,t2);
 			v.setSpacing(10);
+			v2.setSpacing(10);
 			
+			// Name and textfield 
 			v.setTranslateX(250);
-			v.setTranslateY(300);
-			
+			v.setTranslateY(250);
+			// Ip and textfield
+			v2.setTranslateX(250);
+			v2.setTranslateY(300);
+			// buttons 
 			h.setTranslateX(250);
 			h.setTranslateY(500);
 			// Make a gray rectangle in the background with a opacity 0.4
@@ -197,26 +205,13 @@ public class SubmitInfoView extends Application{
 			bg.setFill(Color.GRAY);
 			bg.setOpacity(0.4);
 			
-			getChildren().addAll(bg,h,v);
-			
-			/**if (t.getText() != null){
-				Continue.setVisible(false);
-			}else{
-				Continue.setVisible(true);
-			}*/
+			getChildren().addAll(bg,h,v,v2);
 			
 			
-			/**while(t.getText() != null){
-				Continue.setVisible(true);
-			    }*/
 			
 		}
 		
 	
 }
+
 }
-
-
-
-
-

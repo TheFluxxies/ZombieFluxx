@@ -3,6 +3,8 @@ package test_zf_1;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.rmi.RemoteException;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -22,6 +24,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import zf_test1.Player;
 
 
 
@@ -38,9 +41,11 @@ public static void main(String[] args) {
 	private Image img;
 	private int breedte = 800 ;
 	private int hoogte = 600;
+	
+	Stage arg0 = new Stage();
 	@Override
 	public void start(Stage arg0) throws Exception {
-		
+		this.arg0 = arg0;
 		pane = new Pane(); // Make new Pane named pane.
 		pane.setPrefSize(breedte,hoogte); // Set window size to 800 by 600
 		
@@ -65,9 +70,14 @@ public static void main(String[] args) {
 	private static class lobbyPlayer extends StackPane{ 
 		private Text text;
 		
-		public lobbyPlayer(String name){
+		public lobbyPlayer(Player player){
 			// Text formate 
-			text = new Text(name);
+			try {
+				text = new Text(player.getNaam());
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			text.getFont();
 			text.setFont(Font.font(30));
 			text.setFill(Color.WHITE);
@@ -125,31 +135,31 @@ public static void main(String[] args) {
 			
 			
 			// All the different buttons and what they do onmouseclick 
-			lobbyPlayer Player1 = new lobbyPlayer("Player1");
+			lobbyPlayer Player1 = new lobbyPlayer(SubmitInfoView.allplayers.get(0));
 			Player1.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list 
 				
 			});
 			
-			lobbyPlayer Player2 = new lobbyPlayer("Player2");
+			lobbyPlayer Player2 = new lobbyPlayer(SubmitInfoView.allplayers.get(1));
 			Player2.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
 				
 			});
 			
-			lobbyPlayer Player3 = new lobbyPlayer("Player3");
+			lobbyPlayer Player3 = new lobbyPlayer(SubmitInfoView.allplayers.get(2));
 			Player3.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
 				
 			});
 			
-			lobbyPlayer Player4 = new lobbyPlayer("Player4");
+			lobbyPlayer Player4 = new lobbyPlayer(SubmitInfoView.allplayers.get(3));
 			Player4.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
 				
 			});
 			
-			lobbyPlayer buttonContinue = new lobbyPlayer("Continue");
+			/**lobbyPlayer buttonContinue = new lobbyPlayer("Continue");
 			buttonContinue.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
 				
@@ -159,13 +169,13 @@ public static void main(String[] args) {
 			buttonCancel.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
 				
-			});
+			});*/
 			
 			// set all buttons to menu0
 			menu0.getChildren().addAll(Player1, Player2, Player3, Player4);
 			
 			// set buttons for menu1
-			menu1.getChildren().addAll(buttonContinue, buttonCancel);
+			//menu1.getChildren().addAll(buttonContinue, buttonCancel);
 						
 			// Make a gray rectangle in the background with a opacity 0.4
 			Rectangle bg = new Rectangle(800, 600);
