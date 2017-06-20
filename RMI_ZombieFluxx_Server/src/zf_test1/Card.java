@@ -8,45 +8,53 @@ import java.nio.file.Paths;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.Parent;
 
 
-public class Card implements Card_Interface{
-	
-	String naam;
-	
-	public Card(String naam){
-		int breedte = 40;
-		int hoogte = 100;
-		InputStream is;
-		Image img;
-		this.naam = naam;
-		
-		try {
-			is = Files.newInputStream(Paths.get("res/images/"+naam+".png"));
-			img = new Image(is); // Make a new Image named img and set background as image 
-			is.close(); // close inputStream
-			
-			ImageView imgView = new ImageView(img); // make new ImageView named imgView
-			imgView.setFitWidth(breedte); // set image width
-			imgView.setFitHeight(hoogte); // set image Height
-			
-			HBox h = new HBox();
-			h.getChildren().addAll(imgView);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} // Import background image 
+public class Card extends Parent implements Card_Interface{
+
+	private static final int CARD_WIDTH = 120;
+	private static final int CARD_HEIGHT = 179;
+
+	enum Type {
+		GOAL, KEEPER, CREEPER, NEW_RULE, ACTION;
+		Type(){
+
+		}
 	}
-	
+
+	//public final Type type;
+	public final String name;
+
+	public Card(/*Type type, */String name) throws IOException{
+		//this.type = type;
+		this.name = name;
+
+
+	Rectangle bg = new Rectangle(CARD_WIDTH, CARD_HEIGHT);
+
+	InputStream is = Files.newInputStream(Paths.get("res/image/KaartenAF/New Rule/"+name+".png"));
+	Image imgCard = new Image(is);
+	is.close();
+
+	ImageView view = new ImageView(imgCard);
+	view.setFitWidth(CARD_WIDTH);
+	view.setFitHeight(CARD_HEIGHT);
+
+
+	getChildren().addAll(bg, view);
+	}
+
 	@Override
 	public void getCard() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setCard() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
