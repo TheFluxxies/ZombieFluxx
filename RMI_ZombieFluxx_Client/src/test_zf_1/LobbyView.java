@@ -138,44 +138,39 @@ public static void main(String[] args) {
 			lobbyPlayer Player1 = new lobbyPlayer(SubmitInfoView.allplayers.get(0));
 			Player1.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list 
-				
+				SubmitInfoView.allplayers.remove(0);
+				Player1.setVisible(false);
+				System.out.println("Player removed from Lobby");
 			});
 			
 			lobbyPlayer Player2 = new lobbyPlayer(SubmitInfoView.allplayers.get(1));
 			Player2.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
-				
+				SubmitInfoView.allplayers.remove(1);
+				Player2.setVisible(false);
+				System.out.println("Player removed from Lobby");
 			});
 			
 			lobbyPlayer Player3 = new lobbyPlayer(SubmitInfoView.allplayers.get(2));
 			Player3.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
-				
+				SubmitInfoView.allplayers.remove(2);
+				Player3.setVisible(false);
+				System.out.println("Player removed from Lobby");
 			});
 			
 			lobbyPlayer Player4 = new lobbyPlayer(SubmitInfoView.allplayers.get(3));
 			Player4.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
-				
+				SubmitInfoView.allplayers.remove(3);
+				Player4.setVisible(false);
+				System.out.println("Player removed from Lobby");
 			});
 			
-			/**lobbyPlayer buttonContinue = new lobbyPlayer("Continue");
-			buttonContinue.setOnMouseClicked(event -> {
-				// onmouseclicked remove this player from lobby list
-				
-			});
-			
-			lobbyPlayer buttonCancel = new lobbyPlayer("Cancel");
-			buttonCancel.setOnMouseClicked(event -> {
-				// onmouseclicked remove this player from lobby list
-				
-			});*/
 			
 			// set all buttons to menu0
 			menu0.getChildren().addAll(Player1, Player2, Player3, Player4);
 			
-			// set buttons for menu1
-			//menu1.getChildren().addAll(buttonContinue, buttonCancel);
 						
 			// Make a gray rectangle in the background with a opacity 0.4
 			Rectangle bg = new Rectangle(800, 600);

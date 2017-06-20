@@ -127,6 +127,7 @@ static ArrayList<Player> allplayers = new ArrayList<Player>();
 	HBox v2 = new HBox();
 	Label l = new Label  ("Name:      ");
 	Label l1 = new Label ("Server Ip: ");
+	Label l2 = new Label ("All fields must be filled");
 	TextField t = new TextField();
 	TextField t2 = new TextField();
 	MenuButton Continue = new MenuButton("Continue");
@@ -134,31 +135,38 @@ static ArrayList<Player> allplayers = new ArrayList<Player>();
 	private class GameMenu extends Parent {
 		public GameMenu() throws RemoteException {
 			
-			
+			LobbyView lv = new LobbyView();
 			MenuView s = new MenuView();
+			l2.setTextFill(Color.RED);
+			l2.setVisible(false);
 			// All the different buttons and what they do onmouseclick 
 			
 			
 			Continue.setOnMouseClicked(event -> {
-				if (allplayers.size() > 3){
+				if (allplayers.size() == 4){
 					System.err.println("ERROR : MAX PLAYER REACHED");
 					l.setFont(Font.font(40));
 					l.setTextFill(Color.RED);
 					l.setText("MAX PLAYER REACHED");
 					t.setVisible(false);
-									}else{
+					l1.setVisible(false);
+					t2.setVisible(false);
+					
+					}else if(t.getText() != "" && t2.getText() != "" && t.getText() != null && t2.getText() != null){
 					
 					Player x = new Player(t.getText());
 				    allplayers.add(x);
-				    System.out.println(x);
-				    System.out.println(allplayers);
-				    LobbyView lv = new LobbyView();
 				    try {
 						lv.start(lv.arg0);
+						arg1.close();
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+				    System.out.println("Player Created");
+				}else{
+					l2.setVisible(true);
+					System.err.println("");
 				}
 				
 			});
@@ -200,6 +208,10 @@ static ArrayList<Player> allplayers = new ArrayList<Player>();
 			// buttons 
 			h.setTranslateX(250);
 			h.setTranslateY(500);
+			
+			//
+			l2.setTranslateX(250);
+			l2.setTranslateX(150);
 			// Make a gray rectangle in the background with a opacity 0.4
 			Rectangle bg = new Rectangle(800, 600);
 			bg.setFill(Color.GRAY);
