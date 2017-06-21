@@ -6,20 +6,21 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import javafx.application.Application;
+
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
+
 import javafx.scene.layout.Pane;
+
 import javafx.stage.Stage;
-import zf_test1.Card;
 
 
 public class BoardView extends Application {
 
 	public static void main(String[] args) {
 		
-		launch();
+		
 	}
 	
 	Pane pane;
@@ -40,9 +41,6 @@ public class BoardView extends Application {
 		ImageView imgView = new ImageView(img); // make new ImageView named imgView
 		imgView.setFitWidth(breedte); // set image width
 		imgView.setFitHeight(hoogte); // set image Height
-		
-		Card c = new Card("Brains");
-
 		
 		pane.getChildren().addAll(imgView); // set image en gamemenu to pane 
 		
