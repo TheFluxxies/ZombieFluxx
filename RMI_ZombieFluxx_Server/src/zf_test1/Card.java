@@ -1,13 +1,16 @@
 package zf_test1;
 
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.rmi.RemoteException;
+
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
+
 import javafx.scene.shape.Rectangle;
 import javafx.scene.Parent;
 
@@ -47,14 +50,15 @@ public class Card extends Parent implements Card_Interface{
 	}
 
 	@Override
-	public void getCard() {
+	public void setCard() throws RemoteException {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void setCard() {
+	public void SayConnected() throws RemoteException {
 		// TODO Auto-generated method stub
-
+		
 	}
+	
 }

@@ -1,6 +1,7 @@
 package zf_test1;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -131,6 +132,30 @@ public class Deck implements Deck_Interface{
 		//Card card = cards[number];
 		//cards[number] = null;
 		return card;
+	}
+
+	@Override
+	public void SayConnected() throws RemoteException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void addCard() throws RemoteException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeCard(String Card) throws RemoteException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void getCard() throws RemoteException {
+		// TODO Auto-generated method stub
+
 	}
 
 
