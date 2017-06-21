@@ -1,2 +1,2 @@
 # ZombieFluxx
-Digitaal bordspel van zombiefluxx
+Digitaal bordspel van zombiefluxx.

@@ -1,5 +1,7 @@
 package zf_test1;
 
-public class Player_Interface {
+import java.rmi.Remote;
+
+public interface Player_Interface extends Remote {
 
 }

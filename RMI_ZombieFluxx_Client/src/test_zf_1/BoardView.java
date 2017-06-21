@@ -9,8 +9,10 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import zf_test1.Card;
 
 
 public class BoardView extends Application {
@@ -39,8 +41,13 @@ public class BoardView extends Application {
 		imgView.setFitWidth(breedte); // set image width
 		imgView.setFitHeight(hoogte); // set image Height
 		
+<<<<<<< HEAD
 		//BoardView bv = new BoardView();
 		
+=======
+		Card c = new Card("Brains");
+
+>>>>>>> ac3b81dfa0edf741e7b7cc5f860881d273c57649
 		
 		pane.getChildren().addAll(imgView); // set image en gamemenu to pane 
 		

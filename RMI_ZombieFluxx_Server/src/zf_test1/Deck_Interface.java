@@ -1,5 +1,7 @@
 package zf_test1;
 
-public class Deck_Interface {
+import java.rmi.Remote;
+
+public interface Deck_Interface extends Remote {
 
 }
