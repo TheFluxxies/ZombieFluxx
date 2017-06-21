@@ -1,5 +1,6 @@
 package test_zf_1;
 
+import java.net.InetAddress;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -26,7 +27,11 @@ public class GameClient{
 		
 		Registry registry;
 		try {
+<<<<<<< HEAD
 			registry = LocateRegistry.getRegistry("145.101.81.100", 1099);
+=======
+			registry = LocateRegistry.getRegistry(InetAddress.getLocalHost().getHostAddress());
+>>>>>>> 004cf5dc42a5a0bac7063bfa8d0dea421e31f12f
 			interfacestub = (ZF_Interface) registry.lookup("ZF_Interface");
 			interfaceDeck = (Deck_Interface) registry.lookup("Deck_Interface");
 			interfaceCard = (Card_Interface) registry.lookup("Card_Interface");
@@ -35,13 +40,15 @@ public class GameClient{
 			//interfacePlayer = (Player_Interface) registry.lookup("Player_Interface");
 			interfacePlayerhand = (PlayerHand_Interface) registry.lookup("PlayerHand_Interface");
 			
-			interfacestub.sayHello();
+			
 			interfaceDiscard.SayConnected();
 			interfaceDeck.SayConnected();
 			interfaceCard.SayConnected();
 			interfaceGame.SayConnected();
 			//interfacePlayer.SayConnected();
 			interfacePlayerhand.SayConnected();
+			
+			
 			
 			Application.launch(MenuView.class, args);
 			
@@ -53,6 +60,8 @@ public class GameClient{
 		} catch (NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		
 		

@@ -51,8 +51,6 @@ public class Card implements Card_Interface{
 		
 	}
 
-
-
 	@Override
 	public void SayConnected() throws RemoteException {
 		// TODO Auto-generated method stub

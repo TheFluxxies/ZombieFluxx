@@ -8,5 +8,5 @@ public interface PlayerHand_Interface extends Remote{
 	void getCards() throws RemoteException;
 	void addCard() throws RemoteException;
 	void RemoveCard() throws RemoteException;
-	
+	void setPlays() throws RemoteException;
 }

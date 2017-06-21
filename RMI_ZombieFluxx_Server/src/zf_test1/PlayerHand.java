@@ -5,11 +5,12 @@ import java.util.ArrayList;
 
 public class PlayerHand implements PlayerHand_Interface{
 		
-	ArrayList<String> hand = new ArrayList<String>();
+	ArrayList<Card> hand = new ArrayList<Card>();
 	
 	public PlayerHand(){
-		
-	}
+	
+		}
+	
 	
 	@Override
 	public void SayConnected() throws RemoteException {
@@ -31,6 +32,17 @@ public class PlayerHand implements PlayerHand_Interface{
 
 	@Override
 	public void RemoveCard() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void makeHand(){
+		
+		
+	}
+
+	@Override
+	public void setPlays() throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}

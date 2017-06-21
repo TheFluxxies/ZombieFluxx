@@ -1,8 +1,10 @@
 package zf_test1;
 
+import java.net.InetAddress;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+
 
 public class Server {
 	public Server(){
@@ -23,6 +25,7 @@ public class Server {
 			//Player_Interface player_inf = (Player_Interface) UnicastRemoteObject.exportObject(player, 0);
 			PlayerHand_Interface playerhand_inf = (PlayerHand_Interface) UnicastRemoteObject.exportObject(ph, 0);
 			
+			System.setProperty("java.rmi.server.hostname", InetAddress.getLocalHost().getHostAddress());
 		
 			Registry registry = LocateRegistry.createRegistry(1099);
 			System.out.println("Getting getting files from registry");

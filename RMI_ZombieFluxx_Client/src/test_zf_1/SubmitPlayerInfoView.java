@@ -1,6 +1,5 @@
 package test_zf_1;
 
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -29,10 +28,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import zf_test1.Player;
 
+public class SubmitPlayerInfoView extends Application{
 
-
-public class SubmitInfoView extends Application{
-	static ArrayList<Player> allplayers = new ArrayList<Player>();
+static ArrayList<Player> allplayers = new ArrayList<Player>();
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -45,9 +43,9 @@ public class SubmitInfoView extends Application{
 	Image img;
 	private int breedte = 800 ;
 	private int hoogte = 600;
-	Stage arg0 = new Stage();
-	public void start(Stage arg0) throws RemoteException {
-		this.arg0 = arg0;
+	Stage arg1 = new Stage();
+	public void start(Stage arg1) throws RemoteException {
+		this.arg1 = arg1;
 		pane = new Pane(); // Make new Pane named pane.
 		pane.setPrefSize(breedte,hoogte); // Set window size to 800 by 600
 		
@@ -70,8 +68,8 @@ public class SubmitInfoView extends Application{
 		
 		Scene scene = new Scene(pane); // create scene 
 		
-		arg0.setScene(scene); 
-		arg0.show();
+		arg1.setScene(scene); 
+		arg1.show();
 		
 		
 	}
@@ -126,38 +124,49 @@ public class SubmitInfoView extends Application{
 	}
 	HBox h = new HBox();
 	HBox v = new HBox();
-	Label l = new Label("Name: ");
+	HBox v2 = new HBox();
+	Label l = new Label  ("Name:      ");
+	Label l1 = new Label ("Server Ip: ");
+	Label l2 = new Label ("All fields must be filled");
 	TextField t = new TextField();
+	TextField t2 = new TextField();
 	MenuButton Continue = new MenuButton("Continue");
 	MenuButton Cancel = new MenuButton("Cancel");
 	private class GameMenu extends Parent {
 		public GameMenu() throws RemoteException {
 			
-			
+			LobbyView lv = new LobbyView();
 			MenuView s = new MenuView();
+			l2.setTextFill(Color.RED);
+			l2.setVisible(false);
 			// All the different buttons and what they do onmouseclick 
 			
 			
 			Continue.setOnMouseClicked(event -> {
-				if (allplayers.size() > 3){
+				if (allplayers.size() == 4){
 					System.err.println("ERROR : MAX PLAYER REACHED");
 					l.setFont(Font.font(40));
 					l.setTextFill(Color.RED);
 					l.setText("MAX PLAYER REACHED");
 					t.setVisible(false);
-									}else{
+					l1.setVisible(false);
+					t2.setVisible(false);
+					
+					}else if(t.getText() != "" && t2.getText() != "" && t.getText() != null && t2.getText() != null){
 					
 					Player x = new Player(t.getText());
 				    allplayers.add(x);
-				    System.out.println(x);
-				    System.out.println(allplayers);
-				    LobbyView lv = new LobbyView();
 				    try {
 						lv.start(lv.arg0);
+						arg1.close();
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+				    System.out.println("Player Created");
+				}else{
+					l2.setVisible(true);
+					System.err.println("");
 				}
 				
 			});
@@ -165,9 +174,10 @@ public class SubmitInfoView extends Application{
 			
 			Cancel.setOnMouseClicked(event -> {
 				
+				
 				try {
 					s.start(s.arg0);
-					arg0.close();
+					arg1.close();
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -185,38 +195,35 @@ public class SubmitInfoView extends Application{
 			// set all buttons to menu0
 			h.getChildren().addAll(Continue, Cancel);
 			v.getChildren().addAll(l,t);
+			v2.getChildren().addAll(l1,t2);
 			v.setSpacing(10);
+			v2.setSpacing(10);
 			
+			// Name and textfield 
 			v.setTranslateX(250);
-			v.setTranslateY(300);
-			
+			v.setTranslateY(250);
+			// Ip and textfield
+			v2.setTranslateX(250);
+			v2.setTranslateY(300);
+			// buttons 
 			h.setTranslateX(250);
 			h.setTranslateY(500);
+			
+			//
+			l2.setTranslateX(250);
+			l2.setTranslateX(150);
 			// Make a gray rectangle in the background with a opacity 0.4
 			Rectangle bg = new Rectangle(800, 600);
 			bg.setFill(Color.GRAY);
 			bg.setOpacity(0.4);
 			
-			getChildren().addAll(bg,h,v);
-			
-			/**if (t.getText() != null){
-				Continue.setVisible(false);
-			}else{
-				Continue.setVisible(true);
-			}*/
+			getChildren().addAll(bg,h,v,v2);
 			
 			
-			/**while(t.getText() != null){
-				Continue.setVisible(true);
-			    }*/
 			
 		}
 		
 	
 }
+
 }
-
-
-
-
-
