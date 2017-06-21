@@ -1,6 +1,10 @@
 package test_zf_1;
 
+import java.awt.HeadlessException;
+import java.awt.Label;
 import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.rmi.RemoteException;
@@ -121,11 +125,23 @@ public static void main(String[] args) {
 		}
 
 	}
+	public String getIP() throws UnknownHostException{
+		InetAddress ip;
+		
+			 ip = InetAddress.getLocalHost();
+			System.out.println(ip.getHostAddress());
+			return ip.getHostAddress();
+		}
 	
 	private class Players extends Parent {
-		public Players() {
+		public Players() throws HeadlessException, UnknownHostException {
 			VBox menu0 = new VBox(10);
 			HBox menu1 = new HBox(10);
+			VBox v = new VBox();
+			Label l = new Label(getIP());
+			
+			v.setTranslateX(100);
+			v.setTranslateY(300);
 			
 			menu0.setTranslateX(300);
 			menu0.setTranslateY(200);
@@ -180,7 +196,10 @@ public static void main(String[] args) {
 			getChildren().addAll(bg,menu0,menu1);
 			
 			
+			
+			
 		}
 	}
+	
 
 }
