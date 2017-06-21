@@ -17,13 +17,19 @@ public class Discard implements Deck_Interface{
 	}
 
 	@Override
-	public void removeCard() throws RemoteException {
+	public void getCard() throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void getCard() throws RemoteException {
+	public void startUp() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeCard(String Card) throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}
