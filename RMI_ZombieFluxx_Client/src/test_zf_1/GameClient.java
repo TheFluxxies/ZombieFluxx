@@ -26,7 +26,7 @@ public class GameClient{
 		
 		Registry registry;
 		try {
-			registry = LocateRegistry.getRegistry("127.0.0.1");
+			registry = LocateRegistry.getRegistry("145.101.81.100", 1099);
 			interfacestub = (ZF_Interface) registry.lookup("ZF_Interface");
 			interfaceDeck = (Deck_Interface) registry.lookup("Deck_Interface");
 			interfaceCard = (Card_Interface) registry.lookup("Card_Interface");
