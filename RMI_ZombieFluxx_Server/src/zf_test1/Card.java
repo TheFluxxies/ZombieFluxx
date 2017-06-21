@@ -20,13 +20,6 @@ public class Card extends Parent implements Card_Interface{
 	private static final int CARD_WIDTH = 120;
 	private static final int CARD_HEIGHT = 179;
 
-	enum Type {
-		GOAL, KEEPER, CREEPER, NEW_RULE, ACTION;
-		Type(){
-
-		}
-	}
-
 	//public final Type type;
 	public final String name;
 	public final String type;
