@@ -1,8 +1,16 @@
 package test_zf_1;
 
+
+
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -20,9 +28,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+//import nl.hsleiden.rmi.counter.client.CounterController;
 
 public class MenuView extends Application {
 
@@ -32,15 +43,22 @@ public class MenuView extends Application {
 	Image img;
 	private int breedte = 800 ;
 	private int hoogte = 600;
-	@Override
-	public void start(Stage arg0) throws Exception {
-
+	
+	Stage arg0 = new Stage();
+	public void start(Stage arg0) throws RemoteException {
+		this.arg0 = arg0;
 		pane = new Pane(); // Make new Pane named pane.
 		pane.setPrefSize(breedte,hoogte); // Set window size to 800 by 600
+		Scene scene = new Scene(pane); // create scene 
 		
-		is = Files.newInputStream(Paths.get("res/images/zombieBackground2.jpg")); // Import background image 
-		img = new Image(is); // Make a new Image named img and set background as image 
-		is.close(); // close inputStream
+		try {
+			is = Files.newInputStream(Paths.get("res/images/zombieBackground2.jpg"));
+			img = new Image(is); // Make a new Image named img and set background as image 
+			is.close(); // close inputStream
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // Import background image 
 		
 		ImageView imgView = new ImageView(img); // make new ImageView named imgView
 		imgView.setFitWidth(breedte); // set image width
@@ -50,21 +68,29 @@ public class MenuView extends Application {
 		
 		pane.getChildren().addAll(imgView, gameMenu); // set image en gamemenu to pane 
 		
-		Scene scene = new Scene(pane); // create scene 
-		
 		arg0.setScene(scene); 
 		arg0.show();
-		
-		
 	}
-	
+	Desktop desktop = Desktop.getDesktop();
+	private void openFile(File file) {
+        try {
+            desktop.open(file);
+        } catch (IOException ex) {
+            Logger.getLogger(
+                MenuView.class.getName()).log(
+                    Level.SEVERE, null, ex
+                );
+        }
+    }
+		
 	private static class MenuButton extends StackPane{ 
 		private Text text;
 		
 		public MenuButton(String name){
 			// Text formate 
 			text = new Text(name);
-			//text = setFont(text.getFont().font(20));
+			text.getFont();
+			text.setFont(Font.font(20));
 			text.setFill(Color.WHITE);
 			
 			// menu button background.
@@ -108,6 +134,8 @@ public class MenuView extends Application {
 	
 	private class GameMenu extends Parent {
 		public GameMenu() {
+			SubmitInfoView siv = new SubmitInfoView();
+			SubmitPlayerInfoView spiv = new SubmitPlayerInfoView();
 			VBox menu0 = new VBox(10);
 			VBox menu1 = new VBox(10);
 			
@@ -122,7 +150,7 @@ public class MenuView extends Application {
 			menu1.setTranslateX(offset);
 			
 			// All the different buttons and what they do onmouseclick 
-			MenuButton buttonStart = new MenuButton("  New Game");
+			MenuButton buttonStart = new MenuButton(" Start Game");
 			buttonStart.setOnMouseClicked(event -> {
 				FadeTransition ft = new FadeTransition(Duration.seconds(1), menu0);
 				ft.setFromValue(1);
@@ -143,15 +171,17 @@ public class MenuView extends Application {
 				
 			});
 			
-			MenuButton buttonResume = new MenuButton("  Load Game");
-			buttonResume.setOnMouseClicked(event -> {
-				
-				
-			});
+			
 			
 			MenuButton buttonJoin = new MenuButton("  Join Game");
 			buttonJoin.setOnMouseClicked(event -> {
-				
+				try {
+					spiv.start(spiv.arg1);
+					arg0.close();
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				};
 				
 			});
 			
@@ -161,22 +191,6 @@ public class MenuView extends Application {
 				
 			});
 			
-			MenuButton buttonOption = new MenuButton("  Options");
-			buttonOption.setOnMouseClicked(event -> {
-				getChildren().add(menu1);
-				//Button animation
-				TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menu0);
-				tt.setToX(menu0.getTranslateX() - offset);
-				
-				TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.25), menu1);
-				tt1.setToX(menu0.getTranslateX());
-				
-				tt.play();
-				tt1.play();
-				
-				tt1.setOnFinished(evt ->{ getChildren().remove(menu1);});
-				tt1.setOnFinished(evt -> menu1.setVisible(false));
-			});
 			
 			MenuButton buttonQuit = new MenuButton("  Quit");
 			buttonQuit.setOnMouseClicked(event -> {
@@ -192,20 +206,34 @@ public class MenuView extends Application {
 				ft.setOnFinished(evt -> this.setVisible(false));
 				ft.play();
 				
+				try {
+					siv.start(siv.arg0);
+					arg0.close();
+					
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				};
+				//System.exit(0); // close the programme.
+				
 			});
 			
 			MenuButton buttonLoad = new MenuButton("  Load Game");
 			buttonLoad.setOnMouseClicked(event -> {
-				FadeTransition ft = new FadeTransition(Duration.seconds(1), this);
-				ft.setFromValue(1);
-				ft.setToValue(0);
-				ft.setOnFinished(evt -> this.setVisible(false));
-				ft.play();
-				
+				//FadeTransition ft = new FadeTransition(Duration.seconds(1), this);
+				//ft.setFromValue(1);
+				//ft.setToValue(0);
+				//ft.setOnFinished(evt -> this.setVisible(false));
+				//ft.play();
+				FileChooser fileChooser = new FileChooser();
+				File file = fileChooser.showOpenDialog(arg0);
+                if (file != null) {
+                    openFile(file);
+                }
 			});
 			
 			// set all buttons to menu0
-			menu0.getChildren().addAll(buttonStart, buttonResume, buttonJoin, buttonRules, buttonOption, buttonQuit);
+			menu0.getChildren().addAll(buttonStart, buttonJoin, buttonRules, buttonQuit);
 			
 			// set buttons for menu1
 			menu1.getChildren().addAll(buttonNewgame, buttonLoad);
@@ -221,8 +249,9 @@ public class MenuView extends Application {
 		}
 	}
 	
-	public static void main(String[] args){
-		launch(args);
-	}
+	
+	
+
+	
 	
 }
