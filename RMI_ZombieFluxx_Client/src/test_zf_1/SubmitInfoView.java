@@ -154,6 +154,7 @@ public class SubmitInfoView extends Application{
 				    LobbyView lv = new LobbyView();
 				    try {
 						lv.start(lv.arg0);
+						arg0.close();
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
