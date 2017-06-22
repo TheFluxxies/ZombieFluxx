@@ -128,7 +128,7 @@ public static void main(String[] args) {
 	public String getIP() throws UnknownHostException{
 		InetAddress ip;
 		
-			 ip = InetAddress.getLocalHost();
+			ip = InetAddress.getLocalHost();
 			System.out.println(ip.getHostAddress());
 			return ip.getHostAddress();
 		}
@@ -151,34 +151,34 @@ public static void main(String[] args) {
 			
 			
 			// All the different buttons and what they do onmouseclick 
-			lobbyPlayer Player1 = new lobbyPlayer(SubmitInfoView.allplayers.get(0));
+			lobbyPlayer Player1 = new lobbyPlayer(SubmitPlayerInfoView.allplayers.get(0));
 			Player1.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list 
-				SubmitInfoView.allplayers.remove(0);
+				SubmitPlayerInfoView.allplayers.remove(0);
 				Player1.setVisible(false);
 				System.out.println("Player removed from Lobby");
 			});
 			
-			lobbyPlayer Player2 = new lobbyPlayer(SubmitInfoView.allplayers.get(1));
+			lobbyPlayer Player2 = new lobbyPlayer(SubmitPlayerInfoView.allplayers.get(1));
 			Player2.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
-				SubmitInfoView.allplayers.remove(1);
+				SubmitPlayerInfoView.allplayers.remove(1);
 				Player2.setVisible(false);
 				System.out.println("Player removed from Lobby");
 			});
 			
-			lobbyPlayer Player3 = new lobbyPlayer(SubmitInfoView.allplayers.get(2));
+			lobbyPlayer Player3 = new lobbyPlayer(SubmitPlayerInfoView.allplayers.get(2));
 			Player3.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
-				SubmitInfoView.allplayers.remove(2);
+				SubmitPlayerInfoView.allplayers.remove(2);
 				Player3.setVisible(false);
 				System.out.println("Player removed from Lobby");
 			});
 			
-			lobbyPlayer Player4 = new lobbyPlayer(SubmitInfoView.allplayers.get(3));
+			lobbyPlayer Player4 = new lobbyPlayer(SubmitPlayerInfoView.allplayers.get(3));
 			Player4.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
-				SubmitInfoView.allplayers.remove(3);
+				SubmitPlayerInfoView.allplayers.remove(3);
 				Player4.setVisible(false);
 				System.out.println("Player removed from Lobby");
 			});

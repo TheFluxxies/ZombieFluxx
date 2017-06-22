@@ -152,7 +152,7 @@ static ArrayList<Player> allplayers = new ArrayList<Player>();
 					l1.setVisible(false);
 					t2.setVisible(false);
 
-					}else if(t.getText() != "" && t2.getText() != "" && t.getText() != null && t2.getText() != null){
+				}else if(t.getText() != "" && t2.getText() != "" && t.getText() != null && t2.getText() != null){
 
 					Player x = new Player(t.getText());
 				    allplayers.add(x);
