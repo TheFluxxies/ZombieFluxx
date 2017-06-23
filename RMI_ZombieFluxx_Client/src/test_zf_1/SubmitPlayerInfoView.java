@@ -141,6 +141,36 @@ static ArrayList<Player> allplayers = new ArrayList<Player>();
 			l2.setVisible(false);
 			// All the different buttons and what they do onmouseclick
 
+/*
+			Continue.setOnMouseClicked(event -> {
+				if (allplayers.size() == 4){
+					System.err.println("ERROR : MAX PLAYER REACHED");
+					l.setFont(Font.font(40));
+					l.setTextFill(Color.RED);
+					l.setText("MAX PLAYER REACHED");
+					t.setVisible(false);
+					l1.setVisible(false);
+					t2.setVisible(false);
+
+				}else if(t.getText() != "" && t2.getText() != "" && t.getText() != null && t2.getText() != null){
+
+					Player x = new Player(t.getText());
+				    allplayers.add(x);
+				    try {
+						lv.start(lv.arg0);
+						arg1.close();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				    System.out.println("Player Created");
+				}else{
+					l2.setVisible(true);
+					System.err.println("");
+				}
+
+			});
+			*/
 
 			Continue.setOnMouseClicked(event -> {
 				if (allplayers.size() == 4){
@@ -170,8 +200,7 @@ static ArrayList<Player> allplayers = new ArrayList<Player>();
 				}
 
 			});
-
-
+			
 			Cancel.setOnMouseClicked(event -> {
 
 

@@ -34,48 +34,48 @@ import zf_test1.Player;
 
 public class LobbyView extends Application{
 
-	
+
 public static void main(String[] args) {
-		
+
 		launch();
 	}
-	
+
 	private Pane pane;
 	private InputStream is;
 	private Image img;
 	private int breedte = 800 ;
 	private int hoogte = 600;
-	
+
 	Stage arg0 = new Stage();
 	@Override
 	public void start(Stage arg0) throws Exception {
 		this.arg0 = arg0;
 		pane = new Pane(); // Make new Pane named pane.
 		pane.setPrefSize(breedte,hoogte); // Set window size to 800 by 600
-		
-		is = Files.newInputStream(Paths.get("res/images/zombieBackground2.jpg")); // Import background image 
-		img = new Image(is); // Make a new Image named img and set background as image 
+
+		is = Files.newInputStream(Paths.get("res/images/zombieBackground2.jpg")); // Import background image
+		img = new Image(is); // Make a new Image named img and set background as image
 		is.close(); // close inputStream
-		
+
 		ImageView imgView = new ImageView(img); // make new ImageView named imgView
 		imgView.setFitWidth(breedte); // set image width
 		imgView.setFitHeight(hoogte); // set image Height
-		
+
 		Players p = new Players();
-		
-		pane.getChildren().addAll(imgView,p); // set image en gamemenu to pane 
-		
-		Scene scene = new Scene(pane); // create scene 
-		
+
+		pane.getChildren().addAll(imgView,p); // set image en gamemenu to pane
+
+		Scene scene = new Scene(pane); // create scene
+
 		arg0.setScene(scene); // setScene
-		arg0.show(); 
+		arg0.show();
 	}
-	
-	private static class lobbyPlayer extends StackPane{ 
-		private Text text;
-		
+	private static Text text;
+	private static class lobbyPlayer extends StackPane{
+
+
 		public lobbyPlayer(Player player){
-			// Text formate 
+			// Text formate
 			try {
 				text = new Text(player.getNaam());
 			} catch (RemoteException e) {
@@ -86,79 +86,89 @@ public static void main(String[] args) {
 			text.setFont(Font.font(30));
 			text.setFill(Color.WHITE);
 			text.setTextAlignment(TextAlignment.CENTER);
-			
+
 			// menu button background.
 			Rectangle bg = new Rectangle(250, 40);
 			bg.setOpacity(0.5);
 			bg.setFill(Color.BLACK);
 			bg.setEffect(new GaussianBlur(3.5));
-			
-			// 
+
+			//
 			setAlignment(Pos.CENTER);
 			setRotate(0.5);
 			getChildren().addAll(bg, text);
-			
-			// What happens when you go over the buttons with your mouse 
+
+			// What happens when you go over the buttons with your mouse
 			setOnMouseEntered(event -> {
 				bg.setTranslateX(0);
 				text.setTranslateX(0);
 				//bg.setFill(Color.RED);
 				text.setFill(Color.RED);
 			});
-			
-			// What happens when your mouse leaves the button 
+
+			// What happens when your mouse leaves the button
 			setOnMouseExited(event -> {
 				bg.setTranslateX(0);
 				text.setTranslateX(0);
 				//bg.setFill(Color.BLACK);
 				text.setFill(Color.WHITE);
 			});
-			
-			// What happens when you click on a button with your mouse 
+
+			// What happens when you click on a button with your mouse
 			DropShadow drop = new DropShadow(50, Color.RED);
 			drop.setInput(new Glow());
-			
+
 			setOnMousePressed(event -> setEffect(drop));
 			setOnMouseReleased(event -> setEffect(null));
-			
-			
+
+
 		}
 
 	}
 	public String getIP() throws UnknownHostException{
 		InetAddress ip;
-		
+
 			ip = InetAddress.getLocalHost();
 			System.out.println(ip.getHostAddress());
 			return ip.getHostAddress();
 		}
-	
+
 	private class Players extends Parent {
 		public Players() throws HeadlessException, UnknownHostException {
 			VBox menu0 = new VBox(10);
 			HBox menu1 = new HBox(10);
 			VBox v = new VBox();
 			Label l = new Label(getIP());
-			
+
 			v.setTranslateX(100);
 			v.setTranslateY(300);
-			
+
 			menu0.setTranslateX(300);
 			menu0.setTranslateY(200);
-			
+
 			menu1.setTranslateX(250);
 			menu1.setTranslateY(500);
-			
-			
-			// All the different buttons and what they do onmouseclick 
+
+			lobbyPlayer Player = null;
+			for (int i = 0; i < 3 ; i++){
+				Player = new lobbyPlayer(SubmitPlayerInfoView.allplayers.get(i));
+				Player.setOnMouseClicked(event -> {
+					// onmouseclicked remove this player from lobby list
+					//SubmitPlayerInfoView.allplayers.remove(i);
+					//Player.setVisible(false);
+					//System.out.println("Player removed from Lobby");
+				});
+			}
+				/*
+			// All the different buttons and what they do onmouseclick
 			lobbyPlayer Player1 = new lobbyPlayer(SubmitPlayerInfoView.allplayers.get(0));
 			Player1.setOnMouseClicked(event -> {
-				// onmouseclicked remove this player from lobby list 
+				// onmouseclicked remove this player from lobby list
 				SubmitPlayerInfoView.allplayers.remove(0);
 				Player1.setVisible(false);
 				System.out.println("Player removed from Lobby");
 			});
-			
+
 			lobbyPlayer Player2 = new lobbyPlayer(SubmitPlayerInfoView.allplayers.get(1));
 			Player2.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
@@ -166,7 +176,7 @@ public static void main(String[] args) {
 				Player2.setVisible(false);
 				System.out.println("Player removed from Lobby");
 			});
-			
+
 			lobbyPlayer Player3 = new lobbyPlayer(SubmitPlayerInfoView.allplayers.get(2));
 			Player3.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
@@ -174,7 +184,7 @@ public static void main(String[] args) {
 				Player3.setVisible(false);
 				System.out.println("Player removed from Lobby");
 			});
-			
+
 			lobbyPlayer Player4 = new lobbyPlayer(SubmitPlayerInfoView.allplayers.get(3));
 			Player4.setOnMouseClicked(event -> {
 				// onmouseclicked remove this player from lobby list
@@ -182,24 +192,24 @@ public static void main(String[] args) {
 				Player4.setVisible(false);
 				System.out.println("Player removed from Lobby");
 			});
-			
-			
+
+			*/
 			// set all buttons to menu0
-			menu0.getChildren().addAll(Player1, Player2, Player3, Player4);
-			
-						
+			menu0.getChildren().addAll(Player);
+
+
 			// Make a gray rectangle in the background with a opacity 0.4
 			Rectangle bg = new Rectangle(800, 600);
 			bg.setFill(Color.GRAY);
 			bg.setOpacity(0.4);
-			
+
 			getChildren().addAll(bg,menu0,menu1);
-			
-			
-			
-			
+
+
+
+
 		}
 	}
-	
+
 
 }

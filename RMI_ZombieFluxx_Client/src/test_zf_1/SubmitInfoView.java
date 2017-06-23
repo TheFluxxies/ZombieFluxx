@@ -145,7 +145,7 @@ public class SubmitInfoView extends Application{
 					l.setTextFill(Color.RED);
 					l.setText("MAX PLAYER REACHED");
 					t.setVisible(false);
-									}else{
+				}else{
 
 					Player x = new Player(t.getText());
 				    allplayers.add(x);

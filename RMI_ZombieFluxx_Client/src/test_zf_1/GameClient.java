@@ -29,19 +29,19 @@ public class GameClient{
 		try {
 			registry = LocateRegistry.getRegistry(InetAddress.getLocalHost().getHostAddress());
 			interfacestub = (ZF_Interface) registry.lookup("ZF_Interface");
-			////interfaceDeck = (Deck_Interface) registry.lookup("Deck_Interface");
-			//interfaceCard = (Card_Interface) registry.lookup("Card_Interface");
-			//interfaceDiscard = (Deck_Interface) registry.lookup("Deck_Interface");
-			//interfaceGame = (Game_Interface) registry.lookup("Game_Interface");
-			//interfacePlayer = (Player_Interface) registry.lookup("Player_Interface");
-			//interfacePlayerhand = (PlayerHand_Interface) registry.lookup("PlayerHand_Interface");
+			interfaceDeck = (Deck_Interface) registry.lookup("Deck_Interface");
+			interfaceCard = (Card_Interface) registry.lookup("Card_Interface");
+			interfaceDiscard = (Deck_Interface) registry.lookup("Deck_Interface");
+			interfaceGame = (Game_Interface) registry.lookup("Game_Interface");
+			interfacePlayer = (Player_Interface) registry.lookup("Player_Interface");
+			interfacePlayerhand = (PlayerHand_Interface) registry.lookup("PlayerHand_Interface");
 			
 			
-			//interfaceDiscard.SayConnected();
-			//interfaceDeck.SayConnected();
-			//interfaceCard.SayConnected();
-			//interfaceGame.SayConnected();
-			//interfacePlayer.SayConnected();
+			interfaceDiscard.SayConnected();
+			interfaceDeck.SayConnected();
+			interfaceCard.SayConnected();
+			interfaceGame.SayConnected();
+			interfacePlayer.SayConnected();
 			interfacePlayerhand.SayConnected();
 			
 			
