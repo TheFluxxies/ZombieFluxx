@@ -33,13 +33,13 @@ import zf_test1.Player;
 
 public class SubmitInfoView extends Application{
 	static ArrayList<Player> allplayers = new ArrayList<Player>();
-	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
 	}
 
-	private GameMenu gameMenu; 
+	private GameMenu gameMenu;
 	Pane pane;
 	InputStream is;
 	Image img;
@@ -50,77 +50,77 @@ public class SubmitInfoView extends Application{
 		this.arg0 = arg0;
 		pane = new Pane(); // Make new Pane named pane.
 		pane.setPrefSize(breedte,hoogte); // Set window size to 800 by 600
-		
+
 		try {
 			is = Files.newInputStream(Paths.get("res/images/zombieBackground2.jpg"));
-			img = new Image(is); // Make a new Image named img and set background as image 
+			img = new Image(is); // Make a new Image named img and set background as image
 			is.close(); // close inputStream
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} // Import background image 
-		
+		} // Import background image
+
 		ImageView imgView = new ImageView(img); // make new ImageView named imgView
 		imgView.setFitWidth(breedte); // set image width
 		imgView.setFitHeight(hoogte); // set image Height
-		
+
 		gameMenu = new GameMenu(); // Make new gameMenu
-		
-		pane.getChildren().addAll(imgView, gameMenu); // set image en gamemenu to pane 
-		
-		Scene scene = new Scene(pane); // create scene 
-		
-		arg0.setScene(scene); 
+
+		pane.getChildren().addAll(imgView, gameMenu); // set image en gamemenu to pane
+
+		Scene scene = new Scene(pane); // create scene
+
+		arg0.setScene(scene);
 		arg0.show();
-		
-		
+
+
 	}
-	
-	private static class MenuButton extends StackPane{ 
+
+	private static class MenuButton extends StackPane{
 		private Text text;
-		
+
 		public MenuButton(String name){
-			// Text formate 
+			// Text formate
 			text = new Text(name);
 			text.getFont();
 			text.setFont(Font.font(20));
 			text.setFill(Color.WHITE);
-			
+
 			// menu button background.
 			Rectangle bg = new Rectangle(250, 30);
 			bg.setOpacity(0.5);
 			bg.setFill(Color.BLACK);
 			bg.setEffect(new GaussianBlur(3.5));
-			
-			// 
+
+			//
 			setAlignment(Pos.CENTER_LEFT);
 			setRotate(0.5);
 			getChildren().addAll(bg, text);
-			
-			// What happens when you go over the buttons with your mouse 
+
+			// What happens when you go over the buttons with your mouse
 			setOnMouseEntered(event -> {
 				bg.setTranslateX(0);
 				text.setTranslateX(0);
 				bg.setFill(Color.GREEN);
 				text.setFill(Color.WHITE);
 			});
-			
-			// What happens when your mouse leaves the button 
+
+			// What happens when your mouse leaves the button
 			setOnMouseExited(event -> {
 				bg.setTranslateX(0);
 				text.setTranslateX(0);
 				bg.setFill(Color.BLACK);
 				text.setFill(Color.WHITE);
 			});
-			
-			// What happens when you click on a button with your mouse 
+
+			// What happens when you click on a button with your mouse
 			DropShadow drop = new DropShadow(50, Color.RED);
 			drop.setInput(new Glow());
-			
+
 			setOnMousePressed(event -> setEffect(drop));
 			setOnMouseReleased(event -> setEffect(null));
-			
-			
+
+
 		}
 
 	}
@@ -132,12 +132,12 @@ public class SubmitInfoView extends Application{
 	MenuButton Cancel = new MenuButton("Cancel");
 	private class GameMenu extends Parent {
 		public GameMenu() throws RemoteException {
-			
-			
+
+
 			MenuView s = new MenuView();
-			// All the different buttons and what they do onmouseclick 
-			
-			
+			// All the different buttons and what they do onmouseclick
+
+
 			Continue.setOnMouseClicked(event -> {
 				if (allplayers.size() > 3){
 					System.err.println("ERROR : MAX PLAYER REACHED");
@@ -146,7 +146,7 @@ public class SubmitInfoView extends Application{
 					l.setText("MAX PLAYER REACHED");
 					t.setVisible(false);
 									}else{
-					
+
 					Player x = new Player(t.getText());
 				    allplayers.add(x);
 				    System.out.println(x);
@@ -160,22 +160,22 @@ public class SubmitInfoView extends Application{
 						e1.printStackTrace();
 					}
 				}
-				
+
 			});
-			
-			
+
+
 			Cancel.setOnMouseClicked(event -> {
-				
+
 				try {
 					s.start(s.arg0);
 					arg0.close();
-				} catch (RemoteException e1) {
+				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 			});
-			
+
 			t.setOnAction(e ->{
 				if (t.getText() != null){
 					Continue.setVisible(true);
@@ -187,33 +187,33 @@ public class SubmitInfoView extends Application{
 			h.getChildren().addAll(Continue, Cancel);
 			v.getChildren().addAll(l,t);
 			v.setSpacing(10);
-			
+
 			v.setTranslateX(250);
 			v.setTranslateY(300);
-			
+
 			h.setTranslateX(250);
 			h.setTranslateY(500);
 			// Make a gray rectangle in the background with a opacity 0.4
 			Rectangle bg = new Rectangle(800, 600);
 			bg.setFill(Color.GRAY);
 			bg.setOpacity(0.4);
-			
+
 			getChildren().addAll(bg,h,v);
-			
+
 			/**if (t.getText() != null){
 				Continue.setVisible(false);
 			}else{
 				Continue.setVisible(true);
 			}*/
-			
-			
+
+
 			/**while(t.getText() != null){
 				Continue.setVisible(true);
 			    }*/
-			
+
 		}
-		
-	
+
+
 }
 }
 
